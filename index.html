@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SAMUDER - Samsun Uluslararası Öğrenci Derneği">
+  <meta name="keywords" content="SAMUDER, Uluslararası Öğrenciler, Samsun, Öğrenci Derneği">
+  <meta name="author" content="SAMUDER">
+  <title>SAMUDER | Samsun Uluslararası Öğrenci Derneği</title>
+  <style>
+    :root {
+      --main-color: #1e90ff;
+      --secondary-color: #ffffff;
+      --gradient: linear-gradient(to right, #1e90ff, #00bfff);
+      --font: 'Segoe UI', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font);
+    }
+
+    body {
+      background: #f3f9ff;
+      color: #333;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: var(--gradient);
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header img {
+      height: 60px;
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: bold;
+      text-shadow: 2px 2px #0e6fd0;
+    }
+
+    .lang-select {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .lang-select button {
+      background: white;
+      color: var(--main-color);
+      border: none;
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    nav {
+      background: var(--main-color);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      transition: background 0.3s ease;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.4);
+    }
+
+    section {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--main-color);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      background: var(--gradient);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      margin-top: 2rem;
+    }
+
+    .social-icons img {
+      height: 30px;
+      margin: 0 0.5rem;
+    }
+
+    .btn {
+      background: var(--gradient);
+      color: white;
+      padding: 0.8rem 1.4rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+
+    @media screen and (max-width: 600px) {
+      header, nav, section, footer {
+        padding: 1rem;
+      }
+
+      .title {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+  <script>
+    const translations = {
+      tr: {
+        about: "Hakkımızda", events: "Etkinlik Takvimi", news: "Haberler/Duyurular", activities: "Faaliyetler",
+        donation: "Bağış", gallery: "Galeri", contact: "İletişim",
+        contactDetails: "Adres: Zafer Mahallesi, Atatürk Caddesi, No:14 Kat:6 Ali Kurt İş Merkezi, İlkadım / Samsun\nTelefon: +90 546 870 3955\nEmail: uodsamsun@gmail.com",
+        donationText: "Derneğimize bağışta bulunmak için aşağıdaki bağlantıyı kullanabilirsiniz."
+      },
+      en: {
+        about: "About Us", events: "Event Calendar", news: "News/Announcements", activities: "Activities",
+        donation: "Donation", gallery: "Gallery", contact: "Contact",
+        contactDetails: "Address: Zafer Mahallesi, Atatürk Caddesi, No:14 Floor:6 Ali Kurt Business Center, İlkadım / Samsun\nPhone: +90 546 870 3955\nEmail: uodsamsun@gmail.com",
+        donationText: "You can donate to our association using the link below."
+      },
+      ar: {
+        about: "معلومات عنا", events: "جدول الفعاليات", news: "الأخبار / الإعلانات", activities: "الأنشطة",
+        donation: "تبرع", gallery: "معرض الصور", contact: "الاتصال",
+        contactDetails: "العنوان: حي ظفر، شارع أتاتورك، رقم:14 الطابق:6 مركز علي كورت للأعمال، إيليكاديم / سامسون\nالهاتف: +90 546 870 3955\nالبريد الإلكتروني: uodsamsun@gmail.com",
+        donationText: "يمكنك التبرع لجمعيتنا باستخدام الرابط أدناه."
+      },
+      fa: {
+        about: "درباره ما", events: "تقویم رویدادها", news: "اخبار/اطلاعیه ها", activities: "فعالیت‌ها",
+        donation: "اهدا", gallery: "گالری", contact: "تماس",
+        contactDetails: "آدرس: محله ظفر، خیابان آتاتورک، شماره:14 طبقه:6 مرکز تجاری علی کورت، ایلیکدام / سامسون\nتلفن: +90 546 870 3955\nایمیل: uodsamsun@gmail.com",
+        donationText: "می‌توانید از طریق پیوند زیر به انجمن ما کمک مالی کنید."
+      },
+      ru: {
+        about: "О нас", events: "Календарь мероприятий", news: "Новости/Объявления", activities: "Мероприятия",
+        donation: "Пожертвование", gallery: "Галерея", contact: "Контакт",
+        contactDetails: "Адрес: район Зафер, улица Ататюрка, №14, этаж 6, бизнес-центр Али Курт, Илькадым / Самсун\nТелефон: +90 546 870 3955\nЭлектронная почта: uodsamsun@gmail.com",
+        donationText: "Вы можете пожертвовать нашей ассоциации по ссылке ниже."
+      }
+    };
+
+    function setLanguage(lang) {
+      document.querySelectorAll("[data-section]").forEach(el => {
+        const section = el.getAttribute("data-section");
+        el.textContent = translations[lang][section] || section;
+      });
+      document.getElementById("contact-details").textContent = translations[lang].contactDetails;
+      document.getElementById("donation-text").textContent = translations[lang].donationText;
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="SAMUDER Logo">
+    <div class="title">SAMUDER</div>
+    <div class="lang-select">
+      <button onclick="setLanguage('tr')">TR</button>
+      <button onclick="setLanguage('en')">EN</button>
+      <button onclick="setLanguage('ar')">AR</button>
+      <button onclick="setLanguage('fa')">FA</button>
+      <button onclick="setLanguage('ru')">RU</button>
+    </div>
+  </header>
+  <nav>
+    <a href="#about" data-section="about">Hakkımızda</a>
+    <a href="#events" data-section="events">Etkinlik Takvimi</a>
+    <a href="#news" data-section="news">Haberler/Duyurular</a>
+    <a href="#activities" data-section="activities">Faaliyetler</a>
+    <a href="#donation" data-section="donation">Bağış</a>
+    <a href="#gallery" data-section="gallery">Galeri</a>
+    <a href="#contact" data-section="contact">İletişim</a>
+  </nav>
+  <section id="about">
+    <h2 data-section="about">Hakkımızda</h2>
+    <p>SAMUDER, Samsun’da eğitim gören uluslararası öğrencilere destek olmak, kültürel dayanışmayı artırmak ve toplumsal uyumu sağlamak amacıyla kurulmuş gönüllü bir öğrenci derneğidir.</p>
+  </section>
+  <section id="events">
+    <h2 data-section="events">Etkinlik Takvimi</h2>
+    <p>Yıl boyunca çeşitli kültürel, sosyal ve eğitim odaklı etkinliklerle öğrencilerin gelişimine katkı sağlıyoruz. Güncel takvimi sosyal medya hesaplarımızdan takip edebilirsiniz.</p>
+  </section>
+  <section id="news">
+    <h2 data-section="news">Haberler/Duyurular</h2>
+    <p>Yeni dönem kayıt duyuruları, faaliyet çağrıları ve önemli bilgilendirmeleri bu bölümden takip edebilirsiniz.</p>
+  </section>
+  <section id="activities">
+    <h2 data-section="activities">Faaliyetler</h2>
+    <p>SAMUDER; eğitim seminerleri, gezi programları, spor turnuvaları ve kültürel geceler gibi birçok faaliyeti düzenlemektedir.</p>
+  </section>
+  <section id="donation">
+    <h2 data-section="donation">Bağış</h2>
+    <p id="donation-text">Derneğimize bağışta bulunmak için aşağıdaki bağlantıyı kullanabilirsiniz.</p>
+    <a href="https://udef.org.tr/obs/ogrenci-girisi" target="_blank" class="btn">UDEF Üyelik ve Bağış Sayfası</a>
+  </section>
+  <section id="gallery">
+    <h2 data-section="gallery">Galeri</h2>
+    <div class="gallery">
+      <img src="etkinlik1.jpg" alt="Etkinlik 1">
+      <img src="etkinlik2.jpg" alt="Etkinlik 2">
+      <img src="etkinlik3.jpg" alt="Etkinlik 3">
+      <img src="etkinlik4.jpg" alt="Etkinlik 4">
+      <img src="etkinlik5.jpg" alt="Etkinlik 5">
+      <img src="etkinlik6.jpg" alt="Etkinlik 6">
+      <img src="etkinlik7.jpg" alt="Etkinlik 7">
+      <img src="etkinlik8.jpg" alt="Etkinlik 8">
+    </div>
+  </section>
+  <section id="contact">
+    <h2 data-section="contact">İletişim</h2>
+    <pre id="contact-details">Adres: Zafer Mahallesi, Atatürk Caddesi, No:14 Kat:6 Ali Kurt İş Merkezi, İlkadım / Samsun
+Telefon: +90 546 870 3955
+Email: uodsamsun@gmail.com</pre>
+  </section>
+  <footer>
+    <p>&copy; 2025 SAMUDER - Samsun Uluslararası Öğrenci Derneği</p>
+    <div class="social-icons">
+      <a href="https://instagram.com/samuder55" target="_blank"><img src="instagram.jpg" alt="Instagram"></a>
+      <a href="https://twitter.com/samuder55" target="_blank"><img src="twitter.jpg" alt="Twitter"></a>
+      <a href="https://facebook.com/samuder55" target="_blank"><img src="facebook.jpg" alt="Facebook"></a>
+    </div>
+  </footer>
+</body>
+</html>
