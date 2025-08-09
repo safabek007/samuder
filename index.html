@@ -20,14 +20,18 @@
   <meta name="twitter:description" content="Samsun Uluslararası Öğrenci Derneği" />
   <meta name="twitter:image" content="/og-image.jpg" />
   <style>
-    /* THEME TOKENS */
+    /* ===== THEME TOKENS (Dark first) ===== */
     :root{
-      --bg1:#0b1220; --bg2:#0f1a30; --card:#121a2b; --muted:#9bb3d3; --border:rgba(255,255,255,.08);
-      --pri1:#3b82f6; --pri2:#60a5fa; --pri3:#93c5fd; --text:#e8f0ff; --text-dim:#c8d6ef;
-      --accent:#22c55e; --accent2:#16a34a; --danger:#ef4444; --amber:#f59e0b; --surface:#ffffff;
-      --radius:16px; --shadow:0 10px 30px rgba(0,0,0,.35);
+      /* Dark Theme */
+      --bg1:#0b1220; --bg2:#0a1326; /* page gradient */
+      --card:#121a2b; --surface:#0f1626; /* cards & surfaces */
+      --muted:#9bb3d3; --border:rgba(255,255,255,.08);
+      --pri1:#3b82f6; --pri2:#60a5fa; --pri3:#93c5fd;
+      --text:#e8f0ff; --text-dim:#c8d6ef;
+      --accent:#22c55e; --accent2:#16a34a; --danger:#ef4444; --amber:#f59e0b;
+      --radius:16px; --shadow:0 10px 30px rgba(0,0,0,.45);
     }
-    /* LIGHT MODE */
+    /* Light Theme */
     html[data-theme="light"]{
       --bg1:#f5f7fb; --bg2:#eef2f9; --card:#ffffff; --surface:#ffffff; --text:#0b1220; --text-dim:#2b3a55; --muted:#5a6d8a; --border:#dfe6f1; --shadow:0 8px 24px rgba(10,20,40,.12);
       --pri1:#2563eb; --pri2:#3b82f6; --pri3:#60a5fa;
@@ -39,15 +43,14 @@
     .container{max-width:1200px;margin:0 auto;padding:0 16px}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-    /* HEADER */
+    /* ===== HEADER ===== */
     .skip{position:absolute;left:-9999px;top:auto}
     .skip:focus{left:16px;top:16px;z-index:10000;background:#fff;color:#111;padding:10px 14px;border-radius:10px}
-    header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(18,26,43,.92),rgba(18,26,43,.75));backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
+    header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(18,26,43,.94),rgba(18,26,43,.78));backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
     html[data-theme="light"] header{background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.75));border-bottom:1px solid var(--border)}
-    .head-wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:10px 0;gap:10px}
-    .brand{justify-self:center;display:flex;align-items:center;gap:12px}
+    .head-wrap{display:grid;grid-template-columns:auto 1fr auto;align-items:center;padding:10px 0;gap:10px}
+    .brand{justify-self:start;display:flex;align-items:center;gap:12px}
     .brand img{height:62px;filter:drop-shadow(0 6px 14px rgba(59,130,246,.35))}
-    /* Remove SAMUDER text on header */
     .brand h1{display:none}
     .right-controls{justify-self:end;display:flex;align-items:center;gap:8px}
 
@@ -56,26 +59,26 @@
 
     select{color:var(--text);background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid var(--border);border-radius:10px;padding:8px 10px;font-weight:600}
 
-    /* OFFCANVAS MENU */
-    .menu-panel{position:fixed;top:0;right:-340px;width:320px;height:100dvh;background:var(--card);color:var(--text);box-shadow:-10px 0 30px rgba(0,0,0,.35);border-left:1px solid var(--border);transition:right .25s ease;z-index:70;display:flex;flex-direction:column}
+    /* ===== OFFCANVAS MENU ===== */
+    .menu-panel{position:fixed;top:0;right:-340px;width:320px;height:100dvh;background:var(--card);color:var(--text);box-shadow:-10px 0 30px rgba(0,0,0,.45);border-left:1px solid var(--border);transition:right .25s ease;z-index:70;display:flex;flex-direction:column}
     html[data-theme="light"] .menu-panel{background:#fff}
     .menu-panel.open{right:0}
     .menu-head{display:flex;align-items:center;justify-content:space-between;padding:14px;border-bottom:1px solid var(--border)}
     .menu-links{display:grid;gap:8px;padding:14px}
-    .navlink{text-decoration:none;font-weight:600;padding:12px 14px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));border:1px solid var(--border);box-shadow:0 6px 16px rgba(0,0,0,.18)}
+    .navlink{text-decoration:none;font-weight:600;padding:12px 14px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));border:1px solid var(--border);box-shadow:0 6px 16px rgba(0,0,0,.25)}
     .navlink.cta{background:linear-gradient(90deg,var(--pri1),var(--pri2));border:1px solid rgba(255,255,255,.12);color:#fff;text-align:center}
 
     main{padding:22px 0 64px}
     .hero{margin-top:16px;border-radius:var(--radius);background:radial-gradient(1000px 400px at 10% -10%,rgba(59,130,246,.25),transparent 60%),radial-gradient(800px 300px at 90% -20%,rgba(34,197,94,.2),transparent 60%),linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.07);box-shadow:var(--shadow);padding:22px}
     .section{margin-top:22px}
-    .card{background:var(--surface); color:var(--text); border-radius:14px; box-shadow:0 6px 14px rgba(0,0,0,.12); padding:18px; border:1px solid var(--border)}
+    .card{background:var(--card); color:var(--text); border-radius:14px; box-shadow:0 6px 14px rgba(0,0,0,.35); padding:18px; border:1px solid var(--border)}
     .muted{color:var(--muted)}
 
     /* ROUTER: hidden pages */
     section[hidden]{display:none !important}
 
     /* LIGHTBOX */
-    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:90}
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:90}
     .lightbox.open{display:flex}
     .lightbox-inner{max-width:min(96vw,1100px);max-height:90vh;background:#000;border-radius:12px;overflow:hidden;border:1px solid #333;display:grid;grid-template-rows:auto 1fr auto}
     .lightbox-toolbar{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:rgba(0,0,0,.6);color:#fff}
@@ -84,11 +87,10 @@
     .lightbox-actions{display:flex;gap:8px;padding:8px;background:rgba(0,0,0,.6)}
     .btn{display:inline-flex;align-items:center;gap:8px;border:1px solid #444;background:#111;color:#fff;border-radius:10px;padding:8px 12px;text-decoration:none}
 
-    /* Responsive logo to center on mobile */
+    /* Responsive */
     @media (max-width:720px){
-      .brand{justify-self:center}
-      .right-controls{gap:6px}
       .brand img{height:56px}
+      .right-controls{gap:6px}
     }
   </style>
 </head>
@@ -97,9 +99,12 @@
   <header role="banner">
     <div class="container head-wrap">
       <div class="brand">
-        <img src="logo.png" alt="SAMUDER Logo" />
+        <a href="#/home" data-route="home" aria-label="Ana sayfa">
+          <img src="logo.png" alt="SAMUDER Logo" />
+        </a>
         <h1 data-i18n="site_title" class="sr-only">SAMUDER</h1>
       </div>
+      <div></div>
       <div class="right-controls">
         <label for="lang" class="sr-only" data-i18n="language">Dil</label>
         <select id="lang" aria-label="Dil seçimi" onchange="setLanguage(this.value)">
@@ -109,12 +114,8 @@
           <option value="fa">فارسی</option>
           <option value="ru">Русский</option>
         </select>
-        <button id="themeToggle" class="icon-btn" aria-pressed="false" aria-label="Tema">
-          🌙
-        </button>
-        <button id="menuToggle" class="icon-btn" aria-expanded="false" aria-controls="menuPanel" aria-label="Menüyü aç">
-          ☰
-        </button>
+        <button id="themeToggle" class="icon-btn" aria-pressed="false" aria-label="Tema">🌙</button>
+        <button id="menuToggle" class="icon-btn" aria-expanded="false" aria-controls="menuPanel" aria-label="Menüyü aç">☰</button>
       </div>
     </div>
   </header>
@@ -126,6 +127,7 @@
       <button id="menuClose" class="icon-btn" aria-label="Kapat">✕</button>
     </div>
     <nav class="menu-links" role="navigation" aria-label="Sayfalar">
+      <a class="navlink" data-route="home" href="#/home" data-i18n="home">Ana Sayfa</a>
       <a class="navlink" data-route="about" href="#/about" data-i18n="about">Hakkımızda</a>
       <a class="navlink" data-route="calendar" href="#/calendar" data-i18n="calendar">Etkinlik Takvimi</a>
       <a class="navlink" data-route="news" href="#/news" data-i18n="news">Haberler/Duyurular</a>
@@ -138,14 +140,56 @@
   </aside>
 
   <main id="main" class="container" role="main">
-    <!-- HERO / Landing info, stays only on About page -->
-    <section class="hero" aria-labelledby="hero-title" data-page="about">
-      <h2 id="hero-title" data-i18n="hero_title">Samsun Uluslararası Öğrenci Derneği</h2>
+    <!-- HOME (hero + announcements + contact at bottom) -->
+    <section class="hero" aria-labelledby="home-hero-title" data-page="home">
+      <h2 id="home-hero-title" data-i18n="hero_title">Samsun Uluslararası Öğrenci Derneği</h2>
       <p data-i18n="hero_sub">Kültürel uyum, dayanışma ve gelişim için öğrencilerin buluşma noktası.</p>
     </section>
 
-    <!-- HAKKIMIZDA (page: about) -->
-    <section id="about" class="section card" aria-labelledby="about-title" data-page="about">
+    <section id="home-news" class="section card" aria-labelledby="home-news-title" data-page="home">
+      <h2 id="home-news-title" data-i18n="news">Haberler/Duyurular</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px">
+        <article class="card" style="margin:0">
+          <img src="haber1.jpg" alt="Yeni dönem kayıtları başladı" loading="lazy" style="border-radius:10px;margin-bottom:10px">
+          <h3 data-i18n="news_1_title">Yeni dönem kayıtları başladı</h3>
+          <p class="muted"><time datetime="2025-08-01">01.08.2025</time></p>
+          <p data-i18n="news_1_desc">Üyelik için UDEF portalını kullanabilirsiniz. Gönüllü ekibimize katılım için iletişim bölümünden bize ulaşın.</p>
+        </article>
+        <article class="card" style="margin:0">
+          <img src="haber2.jpg" alt="Konuşma Kulübü kayıtları" loading="lazy" style="border-radius:10px;margin-bottom:10px">
+          <h3 data-i18n="news_2_title">Konuşma Kulübü kayıtları</h3>
+          <p class="muted"><time datetime="2025-09-05">05.09.2025</time></p>
+          <p data-i18n="news_2_desc">Türkçe ve Arapça konuşma kulüplerine başvurular açıldı. Kontenjanlar sınırlıdır.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="home-contact" class="section card" aria-labelledby="home-contact-title" data-page="home">
+      <h2 id="home-contact-title" data-i18n="contact">İletişim</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:8px;">
+        <article class="card" style="margin:0">
+          <h3 style="margin-top:0" data-i18n="contact_info_title">İletişim Bilgileri</h3>
+          <p><strong data-i18n="addr_label">Adres</strong>: <span data-i18n="addr_val">Zafer Mahallesi, Atatürk Caddesi, No:14 Kat:6 Ali Kurt İş Merkezi, İlkadım / Samsun</span></p>
+          <p><strong data-i18n="phone_label">Telefon</strong>: <a href="tel:+905468703955">+90 546 870 3955</a></p>
+          <p><strong data-i18n="mail_label">E-posta</strong>: <a href="mailto:uodsamsun@gmail.com">uodsamsun@gmail.com</a></p>
+        </article>
+        <article class="card" style="margin:0;background:#0f1a2f">
+          <h3 style="margin-top:0" data-i18n="social_title">Sosyal Medya</h3>
+          <ul style="list-style:none;margin:0;padding:0;display:grid;gap:10px;">
+            <li><a href="https://instagram.com/samuder55" target="_blank" rel="noopener" aria-label="Instagram @samuder55" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><img src="instagram.png" alt="" width="28" height="28" style="border-radius:6px;"><span>@samuder55</span></a></li>
+            <li><a href="https://twitter.com/samuder55" target="_blank" rel="noopener" aria-label="Twitter @samuder55" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><img src="twitter.png" alt="" width="28" height="28" style="border-radius:6px;"><span>@samuder55</span></a></li>
+            <li><a href="https://facebook.com/samuder55" target="_blank" rel="noopener" aria-label="Facebook @samuder55" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><img src="facebook.png" alt="" width="28" height="28" style="border-radius:6px;"><span>@samuder55</span></a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="hero" aria-labelledby="hero-title" data-page="about" hidden>
+      <h2 id="hero-title" data-i18n="hero_title">Samsun Uluslararası Öğrenci Derneği</h2>
+      <p data-i18n="hero_sub">Kültürel uyum, dayanışma ve gelişim için öğrencilerin buluşma noktası.</p>
+    </section>
+    <section id="about" class="section card" aria-labelledby="about-title" data-page="about" hidden>
       <h2 id="about-title" data-i18n="about">Hakkımızda</h2>
       <p data-i18n="about_intro">Samsun Uluslararası Öğrenci Derneği (SAMUDER), Samsun’da öğrenim gören uluslararası öğrencilerin akademik, sosyal ve kültürel uyum süreçlerini desteklemek üzere gönüllülük esasıyla faaliyet gösteren sivil bir oluşumdur.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;">
@@ -160,7 +204,7 @@
           </ul>
         </article>
       </div>
-      <div class="card" style="margin-top:14px;background:#fff7ed;border:1px solid var(--border)">
+      <div class="card" style="margin-top:14px;border:1px solid var(--border)">
         <h3 style="margin-top:0" data-i18n="about_support_title">Ne Sağlıyoruz?</h3>
         <ul style="margin:0;padding-left:18px;">
           <li data-i18n="about_support_1">Karşılama & oryantasyon, danışmanlık masaları</li>
@@ -172,7 +216,7 @@
       </div>
     </section>
 
-    <!-- ETKİNLİK TAKVİMİ (page: calendar) -->
+    <!-- CALENDAR (with images) -->
     <section id="calendar" class="section card" aria-labelledby="calendar-title" data-page="calendar" hidden>
       <h2 id="calendar-title" data-i18n="calendar">Etkinlik Takvimi</h2>
       <p data-i18n="calendar_intro">Aşağıda 2025 Güz dönemi için planlanan ana etkinlikler listelenmiştir. Tarihler ve içerikler düzenli olarak güncellenecektir.</p>
@@ -191,22 +235,57 @@
         </label>
       </form>
       <div id="calList" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;">
-        <article class="card" data-month="09" style="margin:0"><h3 data-i18n="ev_orientation_title">Uluslararası Tanışma & Oryantasyon</h3><p class="muted"><strong data-i18n="date">Tarih</strong>: <time datetime="2025-09-20">20 Eylül 2025</time></p><p data-i18n="ev_orientation_desc">Yeni gelen öğrenciler için şehir, kampüs ve dernek tanıtımı; danışmanlık masaları; kayıt ve gönüllülük bilgilendirmesi.</p></article>
-        <article class="card" data-month="10" style="margin:0"><h3 data-i18n="ev_culturalnight_title">Kültürel Gece</h3><p class="muted"><strong data-i18n="date">Tarih</strong>: <time datetime="2025-10-12">12 Ekim 2025</time></p><p data-i18n="ev_culturalnight_desc">Afgan, Türk ve farklı ülkelerden öğrencilerin kültürel sunumları, yöresel tatlar ve sahne performansları.</p></article>
-        <article class="card" data-month="10" style="margin:0"><h3 data-i18n="ev_sports_title">Spor Turnuvaları (Voleybol/Futbol)</h3><p class="muted"><strong data-i18n="date">Tarih</strong>: <time datetime="2025-10-25">25 Ekim 2025</time></p><p data-i18n="ev_sports_desc">Takım kayıtları sınırlıdır. Dereceye giren takımlara ödüller verilecektir.</p></article>
-        <article class="card" data-month="11" style="margin:0"><h3 data-i18n="ev_seminar_title">Akademik Başarı ve Burslar Semineri</h3><p class="muted"><strong data-i18n="date">Tarih</strong>: <time datetime="2025-11-09">9 Kasım 2025</time></p><p data-i18n="ev_seminar_desc">Transkript yönetimi, ders seçim stratejileri, YÖS/denklik ve burs başvuru süreçleri.</p></article>
-        <article class="card" data-month="12" style="margin:0"><h3 data-i18n="ev_volunteer_title">Gönüllülük & Sosyal Sorumluluk Günü</h3><p class="muted"><strong data-i18n="date">Tarih</strong>: <time datetime="2025-12-07">7 Aralık 2025</time></p><p data-i18n="ev_volunteer_desc">Şehir içi yardım çalışmaları, ihtiyaç sahiplerine destek ve çevre temizlik etkinliği.</p></article>
+        <article class="card" data-month="09" style="margin:0">
+          <img src="etkinlik1.jpg" alt="Uluslararası Tanışma & Oryantasyon" loading="lazy" style="border-radius:10px;margin-bottom:10px">
+          <h3 data-i18n="ev_orientation_title">Uluslararası Tanışma & Oryantasyon</h3>
+          <p class="muted"><strong data-i18n="date">Tarih</strong>: <time datetime="2025-09-20">20 Eylül 2025</time></p>
+          <p data-i18n="ev_orientation_desc">Yeni gelen öğrenciler için şehir, kampüs ve dernek tanıtımı; danışmanlık masaları; kayıt ve gönüllülük bilgilendirmesi.</p>
+        </article>
+        <article class="card" data-month="10" style="margin:0">
+          <img src="etkinlik2.jpg" alt="Kültürel Gece" loading="lazy" style="border-radius:10px;margin-bottom:10px">
+          <h3 data-i18n="ev_culturalnight_title">Kültürel Gece</h3>
+          <p class="muted"><strong data-i18n="date">Tarih</strong>: <time datetime="2025-10-12">12 Ekim 2025</time></p>
+          <p data-i18n="ev_culturalnight_desc">Afgan, Türk ve farklı ülkelerden öğrencilerin kültürel sunumları, yöresel tatlar ve sahne performansları.</p>
+        </article>
+        <article class="card" data-month="10" style="margin:0">
+          <img src="etkinlik3.jpg" alt="Spor Turnuvaları" loading="lazy" style="border-radius:10px;margin-bottom:10px">
+          <h3 data-i18n="ev_sports_title">Spor Turnuvaları (Voleybol/Futbol)</h3>
+          <p class="muted"><strong data-i18n="date">Tarih</strong>: <time datetime="2025-10-25">25 Ekim 2025</time></p>
+          <p data-i18n="ev_sports_desc">Takım kayıtları sınırlıdır. Dereceye giren takımlara ödüller verilecektir.</p>
+        </article>
+        <article class="card" data-month="11" style="margin:0">
+          <img src="etkinlik6.jpg" alt="Akademik Başarı ve Burslar Semineri" loading="lazy" style="border-radius:10px;margin-bottom:10px">
+          <h3 data-i18n="ev_seminar_title">Akademik Başarı ve Burslar Semineri</h3>
+          <p class="muted"><strong data-i18n="date">Tarih</strong>: <time datetime="2025-11-09">9 Kasım 2025</time></p>
+          <p data-i18n="ev_seminar_desc">Transkript yönetimi, ders seçim stratejileri, YÖS/denklik ve burs başvuru süreçleri.</p>
+        </article>
+        <article class="card" data-month="12" style="margin:0">
+          <img src="etkinlik4.jpg" alt="Gönüllülük & Sosyal Sorumluluk Günü" loading="lazy" style="border-radius:10px;margin-bottom:10px">
+          <h3 data-i18n="ev_volunteer_title">Gönüllülük & Sosyal Sorumluluk Günü</h3>
+          <p class="muted"><strong data-i18n="date">Tarih</strong>: <time datetime="2025-12-07">7 Aralık 2025</time></p>
+          <p data-i18n="ev_volunteer_desc">Şehir içi yardım çalışmaları, ihtiyaç sahiplerine destek ve çevre temizlik etkinliği.</p>
+        </article>
       </div>
     </section>
 
-    <!-- HABERLER / DUYURULAR (page: news) -->
+    <!-- NEWS (with images) -->
     <section id="news" class="section card" aria-labelledby="news-title" data-page="news" hidden>
       <h2 id="news-title" data-i18n="news">Haberler/Duyurular</h2>
-      <article class="card" style="margin:0"><h3 data-i18n="news_1_title">Yeni dönem kayıtları başladı</h3><p class="muted"><time datetime="2025-08-01">01.08.2025</time></p><p data-i18n="news_1_desc">Üyelik için UDEF portalını kullanabilirsiniz. Gönüllü ekibimize katılım için iletişim bölümünden bize ulaşın.</p></article>
-      <article class="card" style="margin:12px 0 0 0"><h3 data-i18n="news_2_title">Konuşma Kulübü kayıtları</h3><p class="muted"><time datetime="2025-09-05">05.09.2025</time></p><p data-i18n="news_2_desc">Türkçe ve Arapça konuşma kulüplerine başvurular açıldı. Kontenjanlar sınırlıdır.</p></article>
+      <article class="card" style="margin:0">
+        <img src="haber1.jpg" alt="Yeni dönem kayıtları başladı" loading="lazy" style="border-radius:10px;margin-bottom:10px">
+        <h3 data-i18n="news_1_title">Yeni dönem kayıtları başladı</h3>
+        <p class="muted"><time datetime="2025-08-01">01.08.2025</time></p>
+        <p data-i18n="news_1_desc">Üyelik için UDEF portalını kullanabilirsiniz. Gönüllü ekibimize katılım için iletişim bölümünden bize ulaşın.</p>
+      </article>
+      <article class="card" style="margin:12px 0 0 0">
+        <img src="haber2.jpg" alt="Konuşma Kulübü kayıtları" loading="lazy" style="border-radius:10px;margin-bottom:10px">
+        <h3 data-i18n="news_2_title">Konuşma Kulübü kayıtları</h3>
+        <p class="muted"><time datetime="2025-09-05">05.09.2025</time></p>
+        <p data-i18n="news_2_desc">Türkçe ve Arapça konuşma kulüplerine başvurular açıldı. Kontenjanlar sınırlıdır.</p>
+      </article>
     </section>
 
-    <!-- FAALİYETLER (page: activities) -->
+    <!-- ACTIVITIES -->
     <section id="activities" class="section card" aria-labelledby="activities-title" data-page="activities" hidden>
       <h2 id="activities-title" data-i18n="activities">Faaliyetler</h2>
       <p data-i18n="activities_intro">SAMUDER, öğrencilerin akademik ve sosyal gelişimini destekleyen düzenli etkinlikler yürütür. Aşağıda ana başlıklarımızı görebilirsiniz.</p>
@@ -218,7 +297,7 @@
       </div>
     </section>
 
-    <!-- BAĞIŞ (page: donation) -->
+    <!-- DONATION (Updated IBAN) -->
     <section id="donation" class="section card" aria-labelledby="donation-title" data-page="donation" hidden>
       <h2 id="donation-title" data-i18n="donation">Bağış</h2>
       <p data-i18n="donation_intro">SAMUDER’in gönüllü faaliyetlerine destek vererek daha çok öğrenciye ulaşmamıza katkı sağlayabilirsiniz.</p>
@@ -250,15 +329,15 @@
           </div>
           <p id="donHint" class="muted" style="margin-top:10px"></p>
         </div>
-        <div class="card" style="margin:0;background:#fff7ed;border:1px solid var(--border)">
+        <div class="card" style="margin:0">
           <h3 style="margin-top:0" data-i18n="iban_title">IBAN Bilgileri</h3>
-          <p style="margin:6px 0"><strong data-i18n="iban_holder_label">Hesap Sahibi</strong>: <span id="ibanHolder">SAMSUN ULUSLARARASI ÖĞRENCİ DERNEĞİ</span></p>
-          <p style="margin:6px 0"><strong data-i18n="iban_bank_label">Banka</strong>: <span id="ibanBank">Ziraat Bankası</span></p>
-          <p style="margin:6px 0"><strong>IBAN</strong>: <code id="ibanVal" style="font-weight:700;">TR00 0000 0000 0000 0000 0000 00</code></p>
+          <p style="margin:6px 0"><strong data-i18n="iban_holder_label">Hesap Sahibi</strong>: <span id="ibanHolder">Samsun Uluslararasi Ögrenci Kültür Ve Dayanışma Derneği</span></p>
+          <p style="margin:6px 0"><strong data-i18n="iban_bank_label">Banka</strong>: <span id="ibanBank">Türkiye Finans Katılım Bankası</span></p>
+          <p style="margin:6px 0"><strong>IBAN</strong>: <code id="ibanVal" style="font-weight:700;">TR10 0020 6000 4605 0981 0900 03</code></p>
           <small class="muted" data-i18n="iban_note">* Lütfen açıklamaya ad-soyad ve “Bağış” notunu ekleyiniz.</small>
           <div style="display:flex;gap:14px;align-items:center;margin-top:14px;flex-wrap:wrap;">
             <figure style="margin:0;">
-              <img src="bagis-qr.png" alt="Bağış için QR" width="140" height="140" style="border-radius:8px;border:1px solid #ffd8ad" />
+              <img src="bagis-qr.png" alt="Bağış için QR" width="140" height="140" style="border-radius:8px;border:1px solid #334155" />
               <figcaption class="muted" style="margin-top:6px;" data-i18n="qr_caption">Mobil bankacılıkla QR okutabilirsiniz.</figcaption>
             </figure>
           </div>
@@ -266,34 +345,33 @@
       </div>
     </section>
 
-    <!-- GALERİ (page: gallery) -->
+    <!-- GALLERY -->
     <section id="gallery" class="section card" aria-labelledby="gallery-title" data-page="gallery" hidden>
       <h2 id="gallery-title" data-i18n="gallery">Galeri</h2>
       <p data-i18n="gallery_intro">Etkinliklerimizden bazı kareler.</p>
       <div class="grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px;">
-        <!-- 8 görsel -->
-        <figure style="margin:0"><img class="zoomable" src="etkinlik1.jpg" alt="Tanışma ve Oryantasyon" loading="lazy" style="border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.12);"><figcaption class="muted" data-i18n="gcap_1">Tanışma & Oryantasyon</figcaption></figure>
-        <figure style="margin:0"><img class="zoomable" src="etkinlik2.jpg" alt="Kültürel Gece" loading="lazy" style="border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.12);"><figcaption class="muted" data-i18n="gcap_2">Kültürel Gece</figcaption></figure>
-        <figure style="margin:0"><img class="zoomable" src="etkinlik3.jpg" alt="Spor Turnuvası" loading="lazy" style="border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.12);"><figcaption class="muted" data-i18n="gcap_3">Spor Turnuvası</figcaption></figure>
-        <figure style="margin:0"><img class="zoomable" src="etkinlik4.jpg" alt="Gönüllülük Günü" loading="lazy" style="border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.12);"><figcaption class="muted" data-i18n="gcap_4">Gönüllülük Günü</figcaption></figure>
-        <figure style="margin:0"><img class="zoomable" src="etkinlik5.jpg" alt="Eğitim Atölyesi" loading="lazy" style="border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.12);"><figcaption class="muted" data-i18n="gcap_5">Eğitim Atölyesi</figcaption></figure>
-        <figure style="margin:0"><img class="zoomable" src="etkinlik6.jpg" alt="Seminer" loading="lazy" style="border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.12);"><figcaption class="muted" data-i18n="gcap_6">Seminer</figcaption></figure>
-        <figure style="margin:0"><img class="zoomable" src="etkinlik7.jpg" alt="Şehir Turu" loading="lazy" style="border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.12);"><figcaption class="muted" data-i18n="gcap_7">Şehir Turu</figcaption></figure>
-        <figure style="margin:0"><img class="zoomable" src="etkinlik8.jpg" alt="Atölye / Buluşma" loading="lazy" style="border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.12);"><figcaption class="muted" data-i18n="gcap_8">Atölye / Buluşma</figcaption></figure>
+        <figure style="margin:0"><img class="zoomable" src="etkinlik1.jpg" alt="Tanışma ve Oryantasyon" loading="lazy" style="border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.35);"><figcaption class="muted" data-i18n="gcap_1">Tanışma & Oryantasyon</figcaption></figure>
+        <figure style="margin:0"><img class="zoomable" src="etkinlik2.jpg" alt="Kültürel Gece" loading="lazy" style="border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.35);"><figcaption class="muted" data-i18n="gcap_2">Kültürel Gece</figcaption></figure>
+        <figure style="margin:0"><img class="zoomable" src="etkinlik3.jpg" alt="Spor Turnuvası" loading="lazy" style="border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.35);"><figcaption class="muted" data-i18n="gcap_3">Spor Turnuvası</figcaption></figure>
+        <figure style="margin:0"><img class="zoomable" src="etkinlik4.jpg" alt="Gönüllülük Günü" loading="lazy" style="border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.35);"><figcaption class="muted" data-i18n="gcap_4">Gönüllülük Günü</figcaption></figure>
+        <figure style="margin:0"><img class="zoomable" src="etkinlik5.jpg" alt="Eğitim Atölyesi" loading="lazy" style="border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.35);"><figcaption class="muted" data-i18n="gcap_5">Eğitim Atölyesi</figcaption></figure>
+        <figure style="margin:0"><img class="zoomable" src="etkinlik6.jpg" alt="Seminer" loading="lazy" style="border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.35);"><figcaption class="muted" data-i18n="gcap_6">Seminer</figcaption></figure>
+        <figure style="margin:0"><img class="zoomable" src="etkinlik7.jpg" alt="Şehir Turu" loading="lazy" style="border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.35);"><figcaption class="muted" data-i18n="gcap_7">Şehir Turu</figcaption></figure>
+        <figure style="margin:0"><img class="zoomable" src="etkinlik8.jpg" alt="Atölye / Buluşma" loading="lazy" style="border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.35);"><figcaption class="muted" data-i18n="gcap_8">Atölye / Buluşma</figcaption></figure>
       </div>
     </section>
 
-    <!-- İLETİŞİM (page: contact) -->
+    <!-- CONTACT (standalone page) -->
     <section id="contact" class="section card" aria-labelledby="contact-title" data-page="contact" hidden>
       <h2 id="contact-title" data-i18n="contact">İletişim</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:8px;">
-        <article class="card" style="margin:0;background:var(--surface);border:1px solid var(--border)">
+        <article class="card" style="margin:0">
           <h3 style="margin-top:0" data-i18n="contact_info_title">İletişim Bilgileri</h3>
           <p><strong data-i18n="addr_label">Adres</strong>: <span data-i18n="addr_val">Zafer Mahallesi, Atatürk Caddesi, No:14 Kat:6 Ali Kurt İş Merkezi, İlkadım / Samsun</span></p>
           <p><strong data-i18n="phone_label">Telefon</strong>: <a href="tel:+905468703955">+90 546 870 3955</a></p>
           <p><strong data-i18n="mail_label">E-posta</strong>: <a href="mailto:uodsamsun@gmail.com">uodsamsun@gmail.com</a></p>
         </article>
-        <article class="card" style="margin:0;background:#fff7ed;border:1px solid var(--border)">
+        <article class="card" style="margin:0;background:#0f1a2f">
           <h3 style="margin-top:0" data-i18n="social_title">Sosyal Medya</h3>
           <ul style="list-style:none;margin:0;padding:0;display:grid;gap:10px;">
             <li><a href="https://instagram.com/samuder55" target="_blank" rel="noopener" aria-label="Instagram @samuder55" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><img src="instagram.png" alt="" width="28" height="28" style="border-radius:6px;"><span>@samuder55</span></a></li>
@@ -330,6 +408,7 @@
     const I18N = {
       tr:{
         site_title:"SAMUDER", meta_description:"SAMUDER - Samsun Uluslararası Öğrenci Derneği Resmi Web Sitesi",
+        home:"Ana Sayfa",
         language:"Dil", about:"Hakkımızda", calendar:"Etkinlik Takvimi", news:"Haberler/Duyurular", activities:"Faaliyetler", donation:"Bağış", gallery:"Galeri", contact:"İletişim", join:"UDEF Üyelik",
         hero_title:"Samsun Uluslararası Öğrenci Derneği", hero_sub:"Kültürel uyum, dayanışma ve gelişim için öğrencilerin buluşma noktası.",
         about_intro:"Samsun Uluslararası Öğrenci Derneği (SAMUDER), Samsun’da öğrenim gören uluslararası öğrencilerin akademik, sosyal ve kültürel uyum süreçlerini desteklemek üzere gönüllülük esasıyla faaliyet gösteren sivil bir oluşumdur.",
@@ -357,6 +436,7 @@
       },
       en:{
         site_title:"SAMUDER", meta_description:"SAMUDER - Official Website of Samsun International Student Association",
+        home:"Home",
         language:"Language", about:"About Us", calendar:"Event Calendar", news:"News/Announcements", activities:"Activities", donation:"Donation", gallery:"Gallery", contact:"Contact", join:"Join via UDEF",
         hero_title:"Samsun International Student Association", hero_sub:"A hub for cultural adaptation, solidarity and growth.",
         about_intro:"SAMUDER is a volunteer-run civil initiative that supports international students in Samsun in their academic, social and cultural adaptation.", mission_title:"Mission", mission_text:"To help students quickly adapt to city and campus life; to build an inclusive community through advisory, social support and volunteering.", vision_title:"Vision", vision_text:"To be a model civic organization with fair, accessible and sustainable student support that strengthens intercultural exchange.", values_title:"Values", values_1:"Volunteering & solidarity", values_2:"Diversity & inclusion", values_3:"Transparency & trust", values_4:"Responsibility & sustainability", about_support_title:"What We Provide", about_support_1:"Welcome & orientation, advisory desks", about_support_2:"Guidance on accommodation, health, legal and administrative processes", about_support_3:"Language clubs and cultural exchange events", about_support_4:"Seminars on scholarships, equivalency (denklik), YÖS, and academic success", about_support_5:"Social responsibility & volunteering projects",
@@ -370,6 +450,7 @@
       },
       ar:{
         site_title:"سامودر", meta_description:"سامودر - الموقع الرسمي لجمعية الطلاب الدوليين في سامسون",
+        home:"الصفحة الرئيسية",
         language:"اللغة", about:"من نحن", calendar:"جدول الفعاليات", news:"الأخبار/الإعلانات", activities:"الأنشطة", donation:"التبرعات", gallery:"المعرض", contact:"اتصال", join:"الانضمام عبر UDEF",
         hero_title:"جمعية الطلاب الدوليين في سامسون", hero_sub:"مركز للتأقلم الثقافي والتكافل والنمو.",
         about_intro:"سامودر مبادرة مدنية تُدار بالمتطوعين لدعم الطلاب الدوليين في سامسون في التكيف الأكاديمي والاجتماعي والثقافي.", mission_title:"المهمة", mission_text:"مساعدة الطلاب على الاندماج السريع في حياة المدينة والجامعة؛ وبناء مجتمع شامل عبر الإرشاد والدعم الاجتماعي والعمل التطوعي.", vision_title:"الرؤية", vision_text:"أن نكون منظمة مدنية نموذجية بدعم طلابي عادل ومتاح ومستدام يعزز التبادل الثقافي.", values_title:"القيم", values_1:"التطوع والتضامن", values_2:"التنوع والشمول", values_3:"الشفافية والثقة", values_4:"المسؤولية والاستدامة", about_support_title:"ماذا نقدّم؟", about_support_1:"الاستقبال والتوجيه ومكاتب الاستشارة", about_support_2:"إرشاد في السكن والصحة والشؤون القانونية والإدارية", about_support_3:"أندية اللغة وفعاليات التبادل الثقافي", about_support_4:"ندوات عن المنح والمعادلة وامتحان YÖS والنجاح الأكاديمي", about_support_5:"مشاريع المسؤولية الاجتماعية والتطوع",
@@ -383,6 +464,7 @@
       },
       fa:{
         site_title:"سامودر", meta_description:"سامودر - وب‌سایت رسمی انجمن دانشجویان بین‌المللی سامسون",
+        home:"خانه",
         language:"زبان", about:"درباره ما", calendar:"تقویم رویدادها", news:"اخبار/اطلاعیه‌ها", activities:"فعالیت‌ها", donation:"اهدایی", gallery:"گالری", contact:"ارتباط", join:"عضویت از طریق UDEF",
         hero_title:"انجمن دانشجویان بین‌المللی سامسون", hero_sub:"محلی برای سازگاری فرهنگی، همبستگی و رشد.",
         about_intro:"سامودر یک ابتکار مدنی داوطلبانه است که از دانشجویان بین‌المللی در سامسون برای سازگاری علمی، اجتماعی و فرهنگی پشتیبانی می‌کند.", mission_title:"ماموریت", mission_text:"کمک به سازگاری سریع دانشجویان با زندگی شهری و دانشگاهی؛ ساختن جامعه‌ای فراگیر از طریق مشاوره، حمایت اجتماعی و داوطلبی.", vision_title:"چشم‌انداز", vision_text:"به الگویی از یک سازمان مدنی با پشتیبانی دانشجویی عادلانه، در دسترس و پایدار تبدیل شدن که تبادل میان‌فرهنگی را تقویت می‌کند.", values_title:"ارزش‌ها", values_1:"داوطلبی و همبستگی", values_2:"تنوع و شمول", values_3:"شفافیت و اعتماد", values_4:"مسئولیت‌پذیری و پایداری", about_support_title:"چه ارائه می‌دهیم؟", about_support_1:"استقبال و آشنایی، میزهای مشاوره", about_support_2:"راهنمایی در امور اسکان، سلامت، حقوقی و اداری", about_support_3:"باشگاه‌های مکالمه و رویدادهای تبادل فرهنگی", about_support_4:"کارگاه‌ها درباره بورسیه، معادلسازی، YÖS و موفقیت تحصیلی", about_support_5:"پروژه‌های مسئولیت اجتماعی و داوطلبی",
@@ -396,6 +478,7 @@
       },
       ru:{
         site_title:"САМУДЕР", meta_description:"САМУДЕР — официальный сайт Ассоциации иностранных студентов Самсуна",
+        home:"Главная",
         language:"Язык", about:"О нас", calendar:"Календарь событий", news:"Новости/Объявления", activities:"Мероприятия", donation:"Пожертвование", gallery:"Галерея", contact:"Контакты", join:"Присоединиться через UDEF",
         hero_title:"Ассоциация иностранных студентов Самсуна", hero_sub:"Платформа для культурной адаптации, солидарности и роста.",
         about_intro:"САМУДЕР — волонтёрская гражданская инициатива, поддерживающая иностранных студентов в Самсуне в академической, социальной и культурной адаптации.", mission_title:"Миссия", mission_text:"Помогать студентам быстро адаптироваться к жизни в городе и кампусе; строить инклюзивное сообщество через консультации, социальную поддержку и волонтёрство.", vision_title:"Видение", vision_text:"Быть образцовой общественной организацией с справедливой, доступной и устойчивой поддержкой студентов, укрепляющей межкультурный обмен.", values_title:"Ценности", values_1:"Волонтёрство и солидарность", values_2:"Разнообразие и инклюзивность", values_3:"Прозрачность и доверие", values_4:"Ответственность и устойчивость", about_support_title:"Что мы предоставляем?", about_support_1:"Встреча и ориентация, консультационные столы", about_support_2:"Помощь по вопросам жилья, здоровья, права и администрирования", about_support_3:"Языковые клубы и культурные мероприятия", about_support_4:"Семинары о стипендиях, эквивалентности (denklik), YÖS и учебном успехе", about_support_5:"Проекты социальной ответственности и волонтёрства",
@@ -438,7 +521,6 @@
     function setTheme(theme){
       document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem(THEME_KEY, theme);
-      // icon
       const btn = document.getElementById('themeToggle');
       if(!btn) return;
       const lang = document.documentElement.lang || 'tr';
@@ -453,25 +535,23 @@
       }
     }
 
-    // ====== ROUTER (multi-page feel) ======
-    const DEFAULT_PAGE = 'about';
+    // ====== ROUTER ======
+    const DEFAULT_PAGE = 'home';
     function showPage(page){
       document.querySelectorAll('[data-page]').forEach(sec=>{
         const match = sec.getAttribute('data-page')===page;
         if(match){ sec.removeAttribute('hidden'); } else { sec.setAttribute('hidden',''); }
       });
-      // close menu on navigation
       toggleMenu(false);
-      // update title suffix
       const lang = document.documentElement.lang || 'tr';
-      const title = I18N[lang]?.[page] || page;
-      if(title){ document.title = `${I18N[lang]?.site_title || 'SAMUDER'} – ${title}`; }
+      const titleKey = I18N[lang]?.[page] ? I18N[lang][page] : page;
+      if(titleKey){ document.title = `${I18N[lang]?.site_title || 'SAMUDER'} – ${titleKey}`; }
     }
     function navigate(page){
       history.pushState({page}, '', `#/`+page);
       showPage(page);
     }
-    window.addEventListener('popstate', (e)=>{
+    window.addEventListener('popstate', ()=>{
       const page = (location.hash.replace('#/','')||DEFAULT_PAGE);
       showPage(page);
     });
@@ -515,7 +595,7 @@
       // Lang
       const savedLang = localStorage.getItem('samuder_lang') || 'tr';
       const select = document.getElementById('lang'); if(select) select.value = savedLang; applyTranslations(savedLang);
-      // Theme (system preference first run)
+      // Theme
       const savedTheme = localStorage.getItem(THEME_KEY) || (matchMedia('(prefers-color-scheme: light)').matches? 'light':'dark');
       setTheme(savedTheme);
       document.getElementById('themeToggle')?.addEventListener('click', ()=>{
@@ -544,6 +624,17 @@
         });
       }
       if(s) s.addEventListener('input', filterCalendar); if(mm) mm.addEventListener('change', filterCalendar);
+      // Copy IBAN
+      const copyBtn = document.getElementById('copyIBAN');
+      copyBtn?.addEventListener('click', async ()=>{
+        const iban = document.getElementById('ibanVal')?.textContent?.replace(/\s+/g,'') || '';
+        const hint = document.getElementById('donHint');
+        const lang = document.documentElement.lang || 'tr';
+        try{
+          await navigator.clipboard.writeText(iban);
+          if(hint) hint.textContent = I18N[lang]?.iban_copied || 'Copied';
+        }catch(e){ if(hint) hint.textContent = I18N[lang]?.iban_copy_fail || 'Copy failed'; }
+      });
     })();
   </script>
 </body>
